@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import "./App.css";
+import Header from "./components/Header";
+import About from "./pages/About";
+
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+import Services from "./pages/Services";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <>
+        <Header />
+        <Container>
+          <AnimatePresence mode="wait"> {/* Replace exitBeforeEnter with mode='wait' */}
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/about" element={<About />} />
+            
+            </Routes>
+          </AnimatePresence>
+        </Container>
+      </>
+    </Router>
   );
 }
 
